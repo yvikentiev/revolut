@@ -1,3 +1,5 @@
+package com.revolut.test;
+
 import static spark.Spark.*;
 
 public class Main {
