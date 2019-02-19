@@ -1,6 +1,7 @@
 package com.revolut.test;
 
-import static spark.Spark.*;
+import static spark.Spark.get;
+import static spark.Spark.port;
 
 public class Server {
     public static void main(String[] args) {
@@ -11,7 +12,7 @@ public class Server {
                     String account2 = req.queryParams("account2");
                     String amount = req.queryParams("amount");
                     Account.transfer(account1, account2, Double.valueOf(amount));
-                    return "Hello World";
+            return "Completed";
                 }
         );
     }
