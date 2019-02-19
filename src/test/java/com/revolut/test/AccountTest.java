@@ -11,7 +11,7 @@ public class AccountTest {
     Account acc2;
 
     @Before
-    public void testTransfer() {
+    public void beforeTests() {
         acc1 = Account.addAccount(1, 100);
         acc2 = Account.addAccount(2, 200);
     }
