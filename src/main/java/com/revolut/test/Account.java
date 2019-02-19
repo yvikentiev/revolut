@@ -1,6 +1,5 @@
 package com.revolut.test;
 
-import java.security.InvalidParameterException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -46,7 +45,7 @@ public class Account {
         Account acc2 = getAccount(accId2);
 
         if (acc1 == null || acc2 == null) {
-            throws new InvalidParameterException("account not found");
+            throw new IllegalArgumentException("account not found");
         }
 
         Object lock1 = acc1.getId() < acc2.getId() ? acc1 : acc2;

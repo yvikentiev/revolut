@@ -1,17 +1,26 @@
 package com.revolut.test;
 
-import com.revolut.test.Account;
-import com.revolut.test.InsufficientFund;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class AccountTest {
 
-    @Test(expected = InsufficientFund.class)
+    Account acc1;
+    Account acc2;
+
+    @Before
     public void testTransfer() {
-        Account acc1 = Account.addAccount(1,100);
-        Account acc2 = Account.addAccount(2,200);
+        acc1 = Account.addAccount(1, 100);
+        acc2 = Account.addAccount(2, 200);
+    }
+
+    @Test(expected = InsufficientFund.class)
+    public void testInsufficientFundTransfer() {
+
+        Account acc1 = Account.getAccount("1");
+        Account acc2 = Account.getAccount("2");
 
         Account.transfer("1", "2", 100);
 
@@ -19,7 +28,11 @@ public class AccountTest {
         assertThat("account (2) balance is 300", (acc2.getAmount() + "").equals("300.0"));
 
         Account.transfer("1", "2", 100);
+    }
 
-        //assertThat("ammount is 200", acc2.getAmount() == 200);
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testInvalidAccountTransfer() {
+        Account.transfer("1", "3", 100);
     }
 }

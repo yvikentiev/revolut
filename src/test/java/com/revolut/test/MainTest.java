@@ -1,6 +1,5 @@
 package com.revolut.test;
 
-import org.hamcrest.MatcherAssert;
 import org.junit.Test;
 
 import javax.ws.rs.client.Client;
@@ -11,10 +10,13 @@ import java.net.URI;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class MainTest {
+
     @Test
-    public void testSparkServerRule() {
+    public void testServer() {
+
+
         Client client = ClientBuilder.newBuilder().build();
-        Response response = client.target(URI.create("http://localhost:8080/transfer?account1=1&account2=2&amount=1"))
+        Response response = client.target(URI.create("http://localhost:9876/transfer?account1=1&account2=2&amount=1"))
                 .request()
                 .get();
 
