@@ -2,7 +2,7 @@ package com.revolut.test;
 
 import static spark.Spark.*;
 
-public class Main {
+public class Server {
     public static void main(String[] args) {
         port(8080); // Spark will run on port 8080
 

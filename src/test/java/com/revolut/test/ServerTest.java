@@ -8,10 +8,10 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.Response;
 import java.net.URI;
 
-import static com.revolut.test.Main.main;
+import static com.revolut.test.Server.main;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class MainTest {
+public class ServerTest {
 
     Account acc1;
     Account acc2;
