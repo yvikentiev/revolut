@@ -10,8 +10,8 @@ public class Server {
         get("/transfer", (req, res) -> {
                     String account1 = req.queryParams("account1");
                     String account2 = req.queryParams("account2");
-                    String amount = req.queryParams("amount");
-                    Account.transfer(account1, account2, Double.valueOf(amount));
+            String amount = req.queryParams("balance");
+            Account.transfer(account1, account2, Integer.valueOf(amount));
             return "Completed";
                 }
         );

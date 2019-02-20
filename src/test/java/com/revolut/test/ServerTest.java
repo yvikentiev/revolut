@@ -29,7 +29,7 @@ public class ServerTest {
     public void testServer() {
 
         Client client = ClientBuilder.newBuilder().build();
-        Response response = client.target(URI.create("http://localhost:8080/transfer?account1=1&account2=2&amount=1"))
+        Response response = client.target(URI.create("http://localhost:8080/transfer?account1=1&account2=2&balance=1"))
                 .request()
                 .get();
 

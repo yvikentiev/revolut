@@ -24,8 +24,8 @@ public class AccountTest {
 
         Account.transfer("1", "2", 100);
 
-        assertThat("account (1) balance is 0", (acc1.getAmount() + "").equals("0.0"));
-        assertThat("account (2) balance is 300", (acc2.getAmount() + "").equals("300.0"));
+        assertThat("account (1) balance is 0", (acc1.getBalance() + "").equals("0"));
+        assertThat("account (2) balance is 300", (acc2.getBalance() + "").equals("300.0"));
 
         Account.transfer("1", "2", 100);
     }

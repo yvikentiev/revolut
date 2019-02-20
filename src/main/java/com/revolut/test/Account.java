@@ -8,11 +8,11 @@ public class Account {
     private static Map<String, Account> accountsMap = new HashMap<String, Account>();
 
     int id;
-    double amount;
+    int balance;
 
-    public Account(int id, double amount) {
+    public Account(int id, int amount) {
         this.id = id;
-        this.amount = amount;
+        this.balance = amount;
     }
 
     public int getId() {
@@ -23,24 +23,7 @@ public class Account {
         this.id = id;
     }
 
-    public double getAmount() {
-        return amount;
-    }
-
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
-
-    public void withdraw(double amount) {
-        if (this.amount < amount) throw new InsufficientFund("Insufficient funds");
-        this.amount -= amount;
-    }
-
-    public void send(double amount) {
-        this.amount += amount;
-    }
-
-    public static void transfer(String accId1, String accId2, double value) {
+    public static void transfer(String accId1, String accId2, int value) {
         Account acc1 = getAccount(accId1);
         Account acc2 = getAccount(accId2);
 
@@ -54,18 +37,35 @@ public class Account {
         synchronized (lock1) {
             synchronized (lock2) {
                 acc1.withdraw(value);
-                acc2.send(value);
+                acc2.deposit(value);
             }
         }
+    }
+
+    public static Account addAccount(int id, int amount) {
+        Account value = new Account(id, amount);
+        accountsMap.put("" + id, value);
+        return value;
+    }
+
+    public int getBalance() {
+        return balance;
+    }
+
+    public void setBalance(int balance) {
+        this.balance = balance;
+    }
+
+    public void withdraw(int amount) {
+        if (this.balance < amount) throw new InsufficientFund("Insufficient funds");
+        this.balance -= amount;
     }
 
     public static Account getAccount(String accId1) {
         return accountsMap.get(accId1);
     }
 
-    public static Account addAccount(int id, double amount) {
-        Account value = new Account(id, amount);
-        accountsMap.put("" + id, value);
-        return value;
+    public void deposit(int amount) {
+        this.balance += amount;
     }
 }
