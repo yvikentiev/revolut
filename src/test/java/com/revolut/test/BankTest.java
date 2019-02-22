@@ -9,14 +9,23 @@ public class BankTest {
         Bank bank = new Bank();
 
         try {
-            for (int p = 0; p < 1000; p++) {
+            bank.printAll();
+
+            for (int p = 0; p < 1; p++) {
                 for (int i = 0; i < Bank.MAX_ACCOUNT; i++) {
                     Thread t = new Thread(new Transaction(bank, i));
                     t.start();
                 }
             }
 
-            Thread.sleep(2000);
+            Thread.sleep(1000);
+
+            String message = "total transactions %s \n";
+            String threadName = Thread.currentThread().getName();
+            System.out.printf(message, bank.getTotalTransactions().get() + "");
+
+            bank.printAll();
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (Throwable e) {
@@ -49,7 +58,6 @@ public class BankTest {
                 } catch (Throwable e) {
                     e.printStackTrace();
                 }
-
             }
         }
     }
