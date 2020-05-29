@@ -42,6 +42,15 @@ public class Account {
         }
     }
 
+    public void deposit(int amount) {
+        this.balance += amount;
+    }
+
+    public void withdraw(int amount) {
+        if (this.balance < amount) throw new InsufficientFund("Insufficient funds");
+        this.balance -= amount;
+    }
+
     public static Account addAccount(int id, int amount) {
         Account value = new Account(id, amount);
         accountsMap.put("" + id, value);
@@ -56,16 +65,9 @@ public class Account {
         this.balance = balance;
     }
 
-    public void withdraw(int amount) {
-        if (this.balance < amount) throw new InsufficientFund("Insufficient funds");
-        this.balance -= amount;
-    }
-
     public static Account getAccount(String accId1) {
         return accountsMap.get(accId1);
     }
 
-    public void deposit(int amount) {
-        this.balance += amount;
-    }
+
 }
