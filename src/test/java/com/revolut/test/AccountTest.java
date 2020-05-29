@@ -32,6 +32,7 @@ public class AccountTest {
 
 
     @Test(expected = IllegalArgumentException.class)
+    @Test(expected = InsufficientFund.class)
     public void testInvalidAccountTransfer() {
         Account.transfer("1", "3", 100);
     }
